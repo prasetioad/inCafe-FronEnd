@@ -1,13 +1,9 @@
-import {BtnLg} from './components/atoms'
+import {SignUp, Login} from './pages'
 
 function App() {
   return (
-    <div className='m-5'>
-        <BtnLg
-    value='submit'
-    color='btn-orange'
-    rounded='rounded-sm'
-    />
+    <div>
+        <Login />
     </div>
   );
 }
