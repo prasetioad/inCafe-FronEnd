@@ -1,9 +1,9 @@
 import React from 'react'
-import {Footer, AuthLogin} from '../components/templates'
+import {Footer, AuthLogin} from '../../components/templates'
 
 function Login() {
     return (
-        <div>
+        <div className='showInAnimation poppinsFont'>
             <AuthLogin />
             <Footer />
         </div>
