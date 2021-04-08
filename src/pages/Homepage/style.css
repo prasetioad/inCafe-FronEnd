@@ -49,7 +49,7 @@
     .selectFavoriteFoodButton {background: white; border: 0.1vw solid #FFBA33; border-radius: 3vw; color: #6A4029; font-size: 1vw; font-weight: bold; margin-bottom: 5vw; padding: 0.3vw 3vw;}
 
     /* VISIT OUR STORE / MAP */
-    .visitOurStore {align-items: center; height: 100vh;}
+    .visitOurStore {align-items: center; height: auto;}
 }
 
 /* MOBILE */

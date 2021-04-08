@@ -1,5 +1,4 @@
 import { WorldMap } from '../../molekuls'
-import { Footer } from '../../templates'
 
 export default function VisitOurStoreOnTheMapBelow(){
    return(
@@ -15,7 +14,6 @@ export default function VisitOurStoreOnTheMapBelow(){
             </div>
          </div>
          <WorldMap/>
-         <Footer/>
       </div>
    )
 }
