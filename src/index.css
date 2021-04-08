@@ -1,11 +1,27 @@
 *{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   --Primary-Color : #FFBA33;
   --Coklat-Color : #6A4029;
   --gray-1 : #4F5665;
+  --bg-gray : #F8F8F8;
+  font-family: 'Rubik', sans-serif !important;
 }
 h5{
   font-size: 35px;
   color: var(--Coklat-Color);
+}
+h4{
+  font-size: 20px;
+}
+li{
+  list-style: none !important;
+  margin-bottom: 10px;
+  color: #4F5665;
+}
+p{
+  color: #4F5665;
 }
 /* -------------------------------- */
 .main-input{
@@ -61,7 +77,66 @@ h5{
 .rounded-xl{
   border-radius: 24px;
 }
+.rounded-circle{
+  border-radius: 100%;
+}
 /* -------------------------------- */
+.bg-gray-1{
+  background: var(--bg-gray);
+}
+/* ----------------font---------------- */
+.fw-300{
+  font-weight: 300;
+}
+.fw-400{
+  font-weight: 400;
+}
+.fw-500{
+  font-weight: 500;
+}
+.fw-600{
+  font-weight: 600;
+}
+.fw-700{
+  font-weight: 700;
+}
+.fc-1{
+  color: #4F5665;
 
+}
+/* ------------lain-lain------------- */
+.mw-400{
+  max-width: 400px;
+}
+.c-pointer{
+  cursor: pointer;
+}
+.card-fly-position{
+  position: absolute;
+  bottom: -80px;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1000;
+}
+.pt-10{
+  padding-top: 7rem;
+}
+.show-in-md{
+  display: none;
+}
+@media (min-width: 576px) {
+  
+}
+@media (min-width: 768px) {
+  .show-in-md{
+    display: block !important;
+  }
+}
+@media (min-width: 992px) {
+
+}
+@media (min-width: 1200px) {
+  
+}
 
 /* ----------------- aditya ----------------- */
