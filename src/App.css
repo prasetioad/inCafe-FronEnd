@@ -54,5 +54,15 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
 .poppinsFont {font-family: 'Poppins'}
 
+/* MAP BUTTON - CENTERIZE */
+.dropdownMenuCenter {
+  left: 50% !important;
+  right: auto !important;
+  text-align: center !important;
+  transform: translate(-50%, -111%) !important;
+  z-index: 1;
+}
+.justifyContentCenter {justify-content: center}
+
 .showInAnimation {animation: showOpacity 1s;}
 @keyframes showOpacity{from{opacity: 0;} to{opacity: 1;}}

@@ -1,3 +1,4 @@
 import BtnImgSm from './BtnImgSm'
 import Logo from './Logo'
-export {BtnImgSm, Logo}
+import WorldMap from './WorldMap'
+export {BtnImgSm, Logo, WorldMap}
