@@ -6,7 +6,7 @@ import Navbar from '../../components/organisme/Navbar'
 import { Link } from 'react-router-dom'
 
 export default function Products(){
-   const [productCategory, useProductCategory] = useState("Favourite")
+   const [productCategory, setproductCategory] = useState("Favourite")
    return(
       <div className="showInAnimation poppinsFont">
          <Helmet>
@@ -47,11 +47,11 @@ export default function Products(){
             </div>
             <div className="displayColumn ourProductsRightSide">
                <div className="displayRow productCategory">
-                  <Link className="productCategoryBtn" onClick={ () => {useProductCategory("Favourite")} } style={productCategory === "Favourite" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Favourite Product</Link>
-                  <Link className="productCategoryBtn" onClick={ () => {useProductCategory("Coffee")} } style={productCategory === "Coffee" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Coffee</Link>
-                  <Link className="productCategoryBtn" onClick={ () => {useProductCategory("NonCoffee")} } style={productCategory === "NonCoffee" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Non-Coffee</Link>
-                  <Link className="productCategoryBtn" onClick={ () => {useProductCategory("Foods")} } style={productCategory === "Foods" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Foods</Link>
-                  <Link className="productCategoryBtn" onClick={ () => {useProductCategory("AddOn")} } style={productCategory === "AddOn" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Add-on</Link>
+                  <a className="productCategoryBtn" onClick={ () => {setproductCategory("Favourite")} } style={productCategory === "Favourite" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Favourite Product</a>
+                  <a className="productCategoryBtn" onClick={ () => {setproductCategory("Coffee")} } style={productCategory === "Coffee" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Coffee</a>
+                  <a className="productCategoryBtn" onClick={ () => {setproductCategory("NonCoffee")} } style={productCategory === "NonCoffee" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Non-Coffee</a>
+                  <a className="productCategoryBtn" onClick={ () => {setproductCategory("Foods")} } style={productCategory === "Foods" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Foods</a>
+                  <a className="productCategoryBtn" onClick={ () => {setproductCategory("AddOn")} } style={productCategory === "AddOn" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Add-on</a>
                </div>
             </div>
          </div>

@@ -1,11 +1,11 @@
 import './style.css'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CoffeeLogo from '../../atoms/CoffeeLogo'
 import {BtnLg, CustomButton} from '../../atoms/'
 
-export default function Navbar(){
-    const [navbarOption, useNavBtn] = useState("Home")
+const Navbar = ()=>{
+    const [navbarOption, setNavbar] = useState("Home")
     const [sementaraBuatTesLoginDoang, useSementara] = useState(false)
     return(
         <div className="navbarReusable rubikFont">
@@ -13,10 +13,10 @@ export default function Navbar(){
             <div className="navbarDesktop">
                 <CoffeeLogo logoWidth="11vw"/>
                 <div className="displayRow navFourBtn">
-                    <Link className="navBtn" onClick={ () => {useNavBtn("Home")} } style={navbarOption === "Home" ? {color: "#6A4029", fontWeight: "bold"} : null}>Home</Link>
-                    <Link className="navBtn" onClick={ () => {useNavBtn("Product")} } style={navbarOption === "Product" ? {color: "#6A4029", fontWeight: "bold"} : null}>Product</Link>
-                    <Link className="navBtn" onClick={ () => {useNavBtn("Cart")} } style={navbarOption === "Cart" ? {color: "#6A4029", fontWeight: "bold"} : null}>Your Cart</Link>
-                    <Link className="navBtn" onClick={ () => {useNavBtn("History")} } style={navbarOption === "History" ? {color: "#6A4029", fontWeight: "bold"} : null}>History</Link>
+                    <Link className="navBtn" onClick={ () => {setNavbar("Home")} } style={navbarOption === "Home" ? {color: "#6A4029", fontWeight: "bold"} : null}>Home</Link>
+                    <Link className="navBtn" onClick={ () => {setNavbar("Product")} } style={navbarOption === "Product" ? {color: "#6A4029", fontWeight: "bold"} : null}>Product</Link>
+                    <Link className="navBtn" onClick={ () => {setNavbar("Cart")} } style={navbarOption === "Cart" ? {color: "#6A4029", fontWeight: "bold"} : null}>Your Cart</Link>
+                    <Link className="navBtn" onClick={ () => {setNavbar("History")} } style={navbarOption === "History" ? {color: "#6A4029", fontWeight: "bold"} : null}>History</Link>
                 </div>
                 {sementaraBuatTesLoginDoang === true ?
                 <div className="displayRow" style={{alignItems: "center"}}>
@@ -54,3 +54,5 @@ export default function Navbar(){
         </div>
     )
 }
+
+export default Navbar
