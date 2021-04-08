@@ -1,9 +1,27 @@
-import {Login, Profil, SignUp, Products, ForgotPassword} from '../../pages'
+import {Login, Profil, SignUp, Products, ForgotPassword, UserVerify} from '../../pages'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import axios from 'axios'
+import {useEffect} from 'react'
 
 import React from 'react'
 
 function Routers() {
+    const token = localStorage.getItem('token')
+    useEffect(()=>{
+        axios({
+            method : 'GET',
+            url : 'http://localhost:8080/v1/users',
+            headers : { Authorization: `Bearer ${token}` }
+        })
+        .then(response=>{
+            
+        })
+        .catch(err=>{
+            if(err.response.data.status == false){
+                localStorage.removeItem('token')
+            }
+        })
+    },[])
     return (
         <Router>
             <Switch>
@@ -12,6 +30,7 @@ function Routers() {
                 <Route path='/user/SignUp' component={SignUp} />
                 <Route path='/user/ForgotPassword' component={ForgotPassword} />
                 <Route path='/Products' component={Products} />
+                <Route path='/user/verify' component={UserVerify} />
             </Switch>
         </Router>
     )

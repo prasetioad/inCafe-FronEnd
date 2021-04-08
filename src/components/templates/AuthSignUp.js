@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import axios from 'axios'
+import swal from 'sweetalert'
 // -----------component-------------
 import {CardFly} from '../organisme'
 import {MainInput, BtnSm, BtnLg, Heading5} from '../atoms'
@@ -7,7 +9,8 @@ import {Logo} from '../molekuls'
 // ----img-------
 import img from '../../assets/img-1.png'
 function AuthSignUp() {
-    const API = 'https://api2.terhambar.com/'
+    const history = useHistory()
+    const API = 'http://localhost:8080'
     const [data, setData] = useState({
         email : '',
         password : '',
@@ -42,9 +45,19 @@ function AuthSignUp() {
             }
         })
         .then(response=>{
-            console.log(response.data.data[0].status);
+            if(response.status == 201){
+                swal('Berhasil', response.data.message, 'success')
+                history.push('/user/login')
+            }else{
+            }
         })
-        .catch(err=>console.log(err))
+        .catch(err=>{
+            if(err.response.data.data.field == 'email'){
+                swal('Oops', 'Email tidak Boleh Kosong', 'error')
+            }else if(err.response.data.data.field == 'password'){
+                swal('Oops', 'password tidak Boleh Kosong', 'error')
+            }
+        })
     }
     return (
         <div className='container-fluid position-relative'>
