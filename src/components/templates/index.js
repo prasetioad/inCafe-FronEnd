@@ -1,4 +1,5 @@
 import Footer from './Footer'
 import AuthLogin from './AuthLogin' 
 import AuthSignUp from './AuthSignUp'
-export {Footer, AuthLogin, AuthSignUp}
+import Homepage from './Homepage'
+export {Footer, AuthLogin, AuthSignUp, Homepage}

@@ -4,11 +4,12 @@ import { Helmet } from 'react-helmet'
 import { CustomButton } from '../../components/atoms'
 import Navbar from '../../components/organisme/Navbar'
 import { Link } from 'react-router-dom'
+import { Footer } from '../../components/templates'
 
 export default function Products(){
-   const [productCategory, setproductCategory] = useState("Favourite")
+   const [productCategory, useProductCategory] = useState("Favourite")
    return(
-      <div className="showInAnimation poppinsFont">
+      <div className="showInAnimation poppinsFont productsDesktop">
          <Helmet>
             <title>In Cafe - Our Products</title>
          </Helmet>
@@ -24,8 +25,8 @@ export default function Products(){
                         <img src="https://doyanresep.com/wp-content/uploads/2018/12/cara-membuat-nasi-goreng-telur.jpg" style={{borderRadius: "50%", height: "8vw", marginBottom: "1vw"}}/>
                         <p className="foodCouponTitle noMargin">Fried Rice</p>
                         <p className="foodCouponTitle">20% OFF</p>
-                        <p className="noMargin" style={{marginTop: "0.8vw"}}>Buy 1 Choco Oreo and get 20% off</p>
-                        <p className="noMargin">for Fried Rice</p>
+                        <p className="noMargin" style={{fontSize: "0.8vw", marginTop: "0.8vw"}}>Buy 1 Choco Oreo and get 20% off</p>
+                        <p className="noMargin" style={{fontSize: "0.8vw"}}>for Fried Rice</p>
                      </div>
                      <div className="yellowBottomCoupons">
                         <p style={{fontSize: "1vw"}}>COUPON CODE</p>
@@ -47,14 +48,15 @@ export default function Products(){
             </div>
             <div className="displayColumn ourProductsRightSide">
                <div className="displayRow productCategory">
-                  <a className="productCategoryBtn" onClick={ () => {setproductCategory("Favourite")} } style={productCategory === "Favourite" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Favourite Product</a>
-                  <a className="productCategoryBtn" onClick={ () => {setproductCategory("Coffee")} } style={productCategory === "Coffee" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Coffee</a>
-                  <a className="productCategoryBtn" onClick={ () => {setproductCategory("NonCoffee")} } style={productCategory === "NonCoffee" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Non-Coffee</a>
-                  <a className="productCategoryBtn" onClick={ () => {setproductCategory("Foods")} } style={productCategory === "Foods" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Foods</a>
-                  <a className="productCategoryBtn" onClick={ () => {setproductCategory("AddOn")} } style={productCategory === "AddOn" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Add-on</a>
+                  <Link className="productCategoryBtn" onClick={ () => {useProductCategory("Favourite")} } style={productCategory === "Favourite" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Favourite Product</Link>
+                  <Link className="productCategoryBtn" onClick={ () => {useProductCategory("Coffee")} } style={productCategory === "Coffee" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Coffee</Link>
+                  <Link className="productCategoryBtn" onClick={ () => {useProductCategory("NonCoffee")} } style={productCategory === "NonCoffee" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Non-Coffee</Link>
+                  <Link className="productCategoryBtn" onClick={ () => {useProductCategory("Foods")} } style={productCategory === "Foods" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Foods</Link>
+                  <Link className="productCategoryBtn" onClick={ () => {useProductCategory("AddOn")} } style={productCategory === "AddOn" ? {borderBottom: "0.2vw solid #6A4029", color: "#6A4029", fontWeight: "bold"} : null}>Add-on</Link>
                </div>
             </div>
          </div>
+         <Footer/>
       </div>
    )
 }
