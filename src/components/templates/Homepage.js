@@ -1,5 +1,4 @@
 import { PeopleFavorite, StaffStoreCustomer, StartYourDayWithCoffee, VisitOurStoreOnTheMapBelow, WeProvideGoodCoffee } from '../organisme'
-import { Footer } from './'
 
 export default function Homepage(){
    return(
@@ -9,7 +8,6 @@ export default function Homepage(){
          <WeProvideGoodCoffee/>
          <PeopleFavorite/>
          <VisitOurStoreOnTheMapBelow/>
-         <Footer/>
       </div>
    )
 }
