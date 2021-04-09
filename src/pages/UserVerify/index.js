@@ -3,6 +3,7 @@ import {useLocation, useHistory} from 'react-router-dom'
 import axios from 'axios'
 
 function UserVerify() {
+    // ini hanya halaman kosong untuk verify email win
     const [message, setMessage] = useState({
         error : ''
     })
@@ -14,7 +15,7 @@ function UserVerify() {
     const token = query.get('token')
     axios({
         method : 'GET',
-        url : 'http://localhost:8080/v1/users/verify',
+        url : `${process.env.REACT_APP_SERVER}/v1/users/verify`,
         headers : { Authorization: `Bearer ${token}` }
     })
     .then(response=>{

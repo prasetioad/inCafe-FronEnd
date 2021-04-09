@@ -31,12 +31,23 @@ function AuthLogin() {
         })
     }
     function handleSubmit(e){
-        dispatch(User(data.email, data.password))
-        .then(message=>{
-            swal('Berhasil', message, 'success')
+        axios({
+            method : 'POST',
+            url : `${process.env.REACT_APP_SERVER}/v1/users/login`,
+            data : {
+                email : data.email,
+                password : data.password,
+            }
         })
-        .catch(message=>{
-            swal('Oops', message, 'error')
+        .then(response=>{
+            localStorage.setItem('token',response.data.data.token)
+            history.push('/home')
+            swal('success', response.data.data.message, 'error')
+        })
+        .catch(err=>{
+            if(err.response.status == 400){
+                swal('Oops',err.response.data.message,'error')
+            }
         })
     }
     return (

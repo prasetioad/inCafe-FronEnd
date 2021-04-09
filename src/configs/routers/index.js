@@ -6,22 +6,20 @@ import {useEffect} from 'react'
 import React from 'react'
 
 function Routers() {
-    // const token = localStorage.getItem('token')
-    // useEffect(()=>{
-    //     axios({
-    //         method : 'GET',
-    //         url : 'http://localhost:8080/v1/users',
-    //         headers : { Authorization: `Bearer ${token}` }
-    //     })
-    //     .then(response=>{
-            
-    //     })
-    //     .catch(err=>{
-    //         if(err.response.data.status == false){
-    //             localStorage.removeItem('token')
-    //         }
-    //     })
-    // },[])
+    const token = localStorage.getItem('token')
+    useEffect(()=>{
+        axios({
+            method : 'GET',
+            url : `${process.env.REACT_APP_SERVER}/v1/users`,
+            headers : { Authorization: `Bearer ${token}` }
+        })
+        .then(response=>{})
+        .catch(err=>{
+            if(err.response.data.status == false){
+                localStorage.removeItem('token')
+            }
+        })
+    },[])
     return (
         <Router>
             <Switch>
@@ -29,9 +27,10 @@ function Routers() {
                 <Route path='/user/Login' component={Login} />
                 <Route path='/user/SignUp' component={SignUp} />
                 <Route path='/user/ForgotPassword' component={ForgotPassword} />
-                <Route path='/user/Verify' component={UserVerify} />
+                <Route path='/verify' component={UserVerify} />
                 <Route path='/user/Payment' component={Payment} />
                 <Route path='/Products' component={Products} />
+                <Route path='/home' component={Homepage} />
                 <Route path='/' component={Homepage} />
             </Switch>
         </Router>

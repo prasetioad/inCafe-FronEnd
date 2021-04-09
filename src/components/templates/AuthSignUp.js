@@ -10,7 +10,6 @@ import {Logo} from '../molekuls'
 import img from '../../assets/img-1.png'
 function AuthSignUp() {
     const history = useHistory()
-    const API = 'http://localhost:8080'
     const [data, setData] = useState({
         email : '',
         password : '',
@@ -37,7 +36,7 @@ function AuthSignUp() {
     function handleSubmit(e){
         axios({
             method : 'POST',
-            url : `${API}/v1/users`,
+            url : `${process.env.REACT_APP_SERVER}/v1/users`,
             data : {
                 email : data.email,
                 password : data.password,
