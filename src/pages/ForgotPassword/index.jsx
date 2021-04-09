@@ -36,7 +36,9 @@ export default function ForgotPassword(){
                     <CustomButton bgClr="#6A4029" txClr="white" brRad="20px" btnPdg="20px 100px" ftSize="16px" ftWg="600" mrgn="1vw 0" value="Resend Link"/>
                 </form>
             </div>
-            <Footer/>
+            <div className="forgotPasswordFooter">
+                <Footer/>
+            </div>
         </div>
     )
 }

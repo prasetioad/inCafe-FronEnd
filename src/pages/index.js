@@ -3,9 +3,8 @@ import SignUp from './SignUp'
 import Login from './Login'
 import Profil from './Profil'
 import Products from './Products'
+import ProductDetails from './ProductDetails'
 import ForgotPassword from './ForgotPassword'
 import UserVerify from './UserVerify'
 import Payment from './Payment'
-export {SignUp, Login, Profil, ForgotPassword, Products, UserVerify, Homepage, Payment}
-
-
+export {SignUp, Login, Profil, ForgotPassword, ProductDetailsProducts, UserVerify, Homepage, Payment}

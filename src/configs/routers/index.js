@@ -1,4 +1,4 @@
-import {Login, Profil, SignUp, Products, ForgotPassword, Homepage, UserVerify, Payment} from '../../pages'
+import {Login, Profil, SignUp, Products, ProductDetails, ForgotPassword, Homepage, UserVerify, Payment} from '../../pages'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import axios from 'axios'
 import {useEffect} from 'react'
@@ -30,6 +30,7 @@ function Routers() {
                 <Route path='/verify' component={UserVerify} />
                 <Route path='/user/Payment' component={Payment} />
                 <Route path='/Products' component={Products} />
+                <Route path='/ProductDetails' component={ProductDetails} />
                 <Route path='/home' component={Homepage} />
                 <Route path='/' component={Homepage} />
             </Switch>
