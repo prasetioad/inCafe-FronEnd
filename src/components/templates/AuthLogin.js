@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import {useHistory} from 'react-router-dom'
+import {useDispatch } from 'react-redux'
 import axios from 'axios'
 import swal from 'sweetalert'
 // -----------component-------------
@@ -8,9 +9,11 @@ import {MainInput, BtnSm, BtnLg, Heading5} from '../atoms'
 import {Logo} from '../molekuls'
 // ----img-------
 import img from '../../assets/img-1.png'
+// action dispatch
+import User from '../../configs/redux/actions/user'
 function AuthLogin() {
+    const dispatch = useDispatch()
     const history = useHistory()
-    const API = 'http://localhost:8080'
     const [data, setData] = useState({
         email : '',
         password : '',
@@ -28,21 +31,12 @@ function AuthLogin() {
         })
     }
     function handleSubmit(e){
-        axios({
-            method : 'POST',
-            url : `${API}/v1/users/login`,
-            data : {
-                email : data.email,
-                password : data.password,
-            }
+        dispatch(User(data.email, data.password))
+        .then(message=>{
+            swal('Berhasil', message, 'success')
         })
-        .then(response=>{
-            localStorage.setItem('token',response.data.data.token)
-        })
-        .catch(err=>{
-            if(err.response.status == 400){
-                swal('Oops', err.response.data.message, 'error')
-            }
+        .catch(message=>{
+            swal('Oops', message, 'error')
         })
     }
     return (
