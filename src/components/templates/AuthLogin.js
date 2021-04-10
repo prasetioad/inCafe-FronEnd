@@ -78,6 +78,9 @@ function AuthLogin() {
                             <div className='my-4'>
                                 <MainInput label='Password:' placeholder='Enter Your Password' type='password' onChange={handlePasswordChange} />
                             </div>
+                            <div className='my-3'>
+                                <Link to='/user/forgotpassword'><p className='text-coklat font-weight-bold m-0'>Forgot Password ?</p></Link>
+                            </div>
                             <div>
                                 <CustomButton bgClr="#FFBA33" brRad="1vw" btnPdg="1rem 3rem" ftSize="1.1rem" ftWg="bold" mrgn="0.77vw 0" txClr="white" value="Login" wd="100%" onClick={handleSubmit}></CustomButton>
                             </div>
