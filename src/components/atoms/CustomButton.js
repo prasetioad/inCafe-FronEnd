@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CustomButton({value, bgClr, brdr = "none", btnPdg, bxSd, ftSize, ftWg, mrgn, brRad, txClr, wd}){
+export default function CustomButton({value, bgClr, brdr = "none", btnPdg, bxSd, ftSize, ftWg, mrgn, brRad, txClr, wd, ...rest}){
     return (
         <div>
             <button className="hoverThis" style={
@@ -18,7 +18,7 @@ export default function CustomButton({value, bgClr, brdr = "none", btnPdg, bxSd,
                 outline: "none",
                 width: wd
                 }
-            }>{value}</button>
+            }{...rest}>{value}</button>
         </div>
     )
 }

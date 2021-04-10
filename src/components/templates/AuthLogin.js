@@ -1,16 +1,14 @@
 import React,{useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useHistory, Link} from 'react-router-dom'
 import {useDispatch } from 'react-redux'
 import axios from 'axios'
 import swal from 'sweetalert'
 // -----------component-------------
 import {CardFly} from '../organisme'
-import {MainInput, BtnSm, BtnLg, Heading5} from '../atoms'
+import {MainInput, BtnSm, CustomButton, Heading5} from '../atoms'
 import {Logo} from '../molekuls'
 // ----img-------
 import img from '../../assets/img-1.png'
-// action dispatch
-import User from '../../configs/redux/actions/user'
 function AuthLogin() {
     const dispatch = useDispatch()
     const history = useHistory()
@@ -43,11 +41,13 @@ function AuthLogin() {
             localStorage.setItem('token',response.data.data.token)
             history.push('/home')
             swal('success', response.data.data.message, 'error')
+            dispatch({
+                type : 'REQUEST_LOGIN',
+                payload : response.data.data
+            })
         })
         .catch(err=>{
-            if(err.response.status == 400){
-                swal('Oops',err.response.data.message,'error')
-            }
+            swal('Oops',err.response.data.message,'error')
         })
     }
     return (
@@ -62,11 +62,7 @@ function AuthLogin() {
                             <Logo />
                         </div>
                         <div>
-                            <BtnSm 
-                            value='SignUp'
-                            color='btn-orange'
-                            rounded='rounded-xl'
-                            />
+                            <Link to='/user/signup'><CustomButton bgClr="#FFBA33" brRad="0.5vw" btnPdg="0.5vw 3vw" ftSize="1.1vw" ftWg="bold" mrgn="0.77vw 0" txClr="#6A4029" value="SignUp" wd="auto"></CustomButton></Link>
                         </div>
                     </div>
                     <div className="row">
@@ -81,12 +77,7 @@ function AuthLogin() {
                                 <MainInput label='Password:' placeholder='Enter Your Password' type='password' onChange={handlePasswordChange} />
                             </div>
                             <div>
-                                <BtnLg 
-                                value='Login'
-                                color='btn-orange'
-                                rounded='rounded-md'
-                                onClick={handleSubmit}
-                                />
+                                <CustomButton bgClr="#FFBA33" brRad="1vw" btnPdg="1rem 3rem" ftSize="1.1rem" ftWg="bold" mrgn="0.77vw 0" txClr="white" value="Login" wd="100%" onClick={handleSubmit}></CustomButton>
                             </div>
                         </div>
                     </div>

@@ -7,4 +7,4 @@ import ProductDetails from './ProductDetails'
 import ForgotPassword from './ForgotPassword'
 import UserVerify from './UserVerify'
 import Payment from './Payment'
-export {SignUp, Login, Profil, ForgotPassword, ProductDetailsProducts, UserVerify, Homepage, Payment}
+export {SignUp, Login, Profil, ForgotPassword, ProductDetails, Products, UserVerify, Homepage, Payment}

@@ -191,6 +191,12 @@ p{
   background-repeat: no-repeat;
   background-size: cover;
 }
+.bg-profil{
+  background-image: url('./assets/bg-payment-cust.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 @media (min-width: 576px) {
   
 }

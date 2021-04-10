@@ -1,6 +1,6 @@
 const initialstate = {
     data: {
-        status: true,
+        status: false,
         message: "",
         data: {
             userId: 0,
@@ -20,29 +20,14 @@ const initialstate = {
             token: "",
             refreshToken: ""
         }
-    },
-    loading: false,
-    error: ''
+    }
 }
 
 const User = (state = initialstate, action) => {
     switch (action.type) {
         case 'REQUEST_LOGIN':
             return {
-                ...state,
-                loading: true
-            }
-        case 'REQUEST_SUCCESS':
-            return {
-                ...state,
-                data : action.payload,
-                loading: false
-            }
-        case 'LOGIN_FAILURE':
-            return {
-                ...state,
-                loading: false,
-                error : action.payload
+                data : action.payload
             }
         default: 
             return state

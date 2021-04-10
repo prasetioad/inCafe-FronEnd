@@ -52,7 +52,7 @@ function Payment() {
                         <div className="col-12 col-lg-5 ml-auto">
                             <div className="row">
                                 <div className="col-12">
-                                    <div className="d-flex justify-content-between">
+                                    <div className="d-flex justify-content-between mt-5">
                                         <h3 className='fw-700 text-white mb-3'>Address details</h3>
                                         <p className='fw-700 text-white mb-0'>Edit</p>
                                     </div>
