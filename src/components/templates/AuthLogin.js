@@ -5,7 +5,7 @@ import axios from 'axios'
 import swal from 'sweetalert'
 // -----------component-------------
 import {CardFly} from '../organisme'
-import {MainInput, BtnSm, CustomButton, Heading5} from '../atoms'
+import {MainInput, CustomButton, Heading5} from '../atoms'
 import {Logo} from '../molekuls'
 // ----img-------
 import img from '../../assets/img-1.png'
@@ -40,14 +40,16 @@ function AuthLogin() {
         .then(response=>{
             localStorage.setItem('token',response.data.data.token)
             history.push('/home')
-            swal('success', response.data.data.message, 'error')
+            swal('success', response.data.message, 'success')
             dispatch({
                 type : 'REQUEST_LOGIN',
                 payload : response.data.data
             })
         })
         .catch(err=>{
-            swal('Oops',err.response.data.message,'error')
+            if(err.response.status == 400){
+                swal('Oops',err.response.data.message,'error')
+            }
         })
     }
     return (
