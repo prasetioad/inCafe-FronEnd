@@ -3,50 +3,76 @@ import './../orderAdmin/style.css'
 import { Helmet } from 'react-helmet'
 import Navbar from '../../components/organisme/Navbar'
 import Footer from '../../components/templates/Footer'
+import {EditText, EditTextarea } from 'react-edit-text'
 import axios from 'axios'
 import Swal from 'sweetalert'
+import { event } from 'jquery'
 
 
 function OrderAdmin() {
 
     const [index , setIndex] = useState(0)
     const [data, setData] = useState(null)
+    const[order, setOrder] =useState(null)
+    const[editing, setEditing] =useState(null)
+
     useEffect(() => {
         if (!data) {
             console.log('berjalan');
             const url = process.env.REACT_APP_SERVER
-            axios.get(`https://api.incafe.xyz/v1/trx/avail`, {
+            axios.get(`${url}/v1/trx/avail`, {
                 headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcklkIjoiNDNkNDQwZGEtMDVlYi00OGZmLTlhY2QtN2ZhNjI0OTk1NWE5IiwiZmlyc3ROYW1lIjoidXNlciIsImxhc3ROYW1lIjoiY2FmZSIsImRpc3BsYXlOYW1lIjoiU3dlZXRlc3QgQ3VzdG9tZXJzIiwiZW1haWwiOiJwcmFzZXRpb2FkQGdtYWlsLmNvbSIsImdlbmRlciI6Im1hbGUiLCJyb2xlIjoiYWRtaW4iLCJhZGRyZXNzIjoiSW5DYWZlIE5vLjMzIiwicGhvbmUiOiIwODk2MzU5NjAwNTMiLCJiaXJ0aGRheSI6IjIwMjEtMDQtMTAiLCJhdmF0YXIiOiJodHRwczovL2ltZy5mcmVlcGlrLmNvbS9mcmVlLXZlY3Rvci9jb2ZmZWUtbG92ZS1mb2FtLXdpdGgtYmVhbnMtY2FydG9vbi1pY29uLWlsbHVzdHJhdGlvbl8xMzg2NzYtMjU3NS5qcGciLCJhY3RpdmUiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjEtMDQtMTBUMDA6MTQ6NDYuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMDQtMTBUMDA6MjI6MjMuMDAwWiIsImlhdCI6MTYxODI2OTcwNywiZXhwIjoxNjE4MzU2MTA3fQ.cywg2A0a-wSpcxFTeOieaWg1l3wycHl2v2iSJu7cF_U`}
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}`}
                     // ${window.localStorage.getItem('token')}`}
             })
                 .then((result) => {
-                    console.log(result.data);
                     setData(result.data)
-                    console.log('berjalan dalam axios');
+                    setOrder(result.data.data[0].addressUser)
+                    console.log(data, order);
                 })
                 .catch((err) => {
                     console.log(err);
                 })
-
+                
         }
     }, [])
 
     const handelMarkDone = () => {
+        
         const url = process.env.REACT_APP_SERVER
-        axios.get(`${url}/v1/trx/done/${index}`)
+        axios.get(`${url}/v1/trx/done/${data.data[index].id}`)
         .then((result)=>{
             Swal('terupdate!')
         })
         .catch((err)=>{
             console.log(err);
         })
-        setIndex(index + 1)
+        if(!data.data[index+1]){
+            Swal('Selesai, Ini data terakhir')
+        }else{
+            setIndex(index + 1)
+        }
     }
 
+    const onSave = val => {
+        console.log('Edited Value -> ', val)
+      }
 
-    console.log(data);
-    console.log(index);
+    const handleChange =(e)=>{
+        console.log(e);
+        // console.log(e.target.value);
+        // const name = e.target.name
+        // const value = e.target.value
+        setOrder(e.target.value)
+    }
+
+    const handleEdit =()=>{
+
+    }
+
+    console.log(window.localStorage.getItem('token'));
+    // console.log(data.data[index].id);
+    // console.log(order);
     return (
         <div className="showInAnimation homepageDesktop">
             <Helmet>
@@ -54,7 +80,7 @@ function OrderAdmin() {
             </Helmet>
             <Navbar />
             <div className="orderContainer">
-                {data &&
+                {data ?
                     <div className="orderContainerMain">
                         {/* {data.data.map(item=>{return(<> */}
                         <div className="orderMainLeft">
@@ -66,18 +92,24 @@ function OrderAdmin() {
                                     <p className="orderDelivery">{data.data[index].deliveryMethod}</p>
                                     <p>{data.data[index].nameUser}</p>
                                 </div>
-                                <div className="orderContentMenu">
-                                    <div className="orderContentMenuImage">
-                                        <img src="/src/assets/image 36.png" alt="image" />
+                                <div className="orderContentListCount">
+                                    {data.data[index].ordered_product.map(item =>{ return(<>
+                                    <div className="orderContentMenu">
+                                        <div className="orderContentMenuImage">
+                                            <img src={item.image} alt="image" />
+                                        </div>
+                                        <div className="orderContentListDetil orderNoMarginBot">
+                                            <p>{item.name}</p>
+                                            <p>{item.orderItem}</p>
+                                            {item.size.map(size=>{return(<>
+                                            <p>{size}</p>
+                                            </>)})}
+                                        </div>
+                                        <div className="orderContentTotalDetil">
+                                            <p>IDR{item.price}</p>
+                                        </div>
                                     </div>
-                                    <div className="orderContentListDetil orderNoMarginBot">
-                                        <p>Hazelnut Latte</p>
-                                        <p>x1</p>
-                                        <p>Regular</p>
-                                    </div>
-                                    <div className="orderContentTotalDetil">
-                                        <p>IDR 24.0</p>
-                                    </div>
+                                        </>)})}
                                 </div>
                                 <hr />
                                 <div className="orderContentDescription">
@@ -113,7 +145,7 @@ function OrderAdmin() {
                                             <p>Address Detil</p>
                                         </div>
                                         <div className="orderEditAddress">
-                                            <button>Edit</button>
+                                            <button className='button is-small is-warning'onClick={() => {setEditing(e => !e )}}>Edit</button>
                                         </div>
                                     </div>
                                     <div className="orderAddressDetilCard">
@@ -121,7 +153,8 @@ function OrderAdmin() {
                                             <div className="orderDetilStreet ">
                                                 <p><span>Delivery to </span></p>
                                                 <hr className="orderNoMargin" />
-                                                <input type="text" value={data.data[index].addressUser}/>
+                                                <textarea type="text" name="data" value={order} editing={editing} onChange={(e)=>handleChange(e)}/>
+                                                {/* <input type="text" name="data" value={order} onChange={(e)=>handleChange(e)}/> */}
                                                 <hr className="orderNoMargin" />
                                                 <p>{data.data[index].phoneUser}</p>
                                             </div>
@@ -136,7 +169,7 @@ function OrderAdmin() {
                                                 <div className="oderPaymentInput">
                                                     <input type="radio" id="c1" name="cc" />
                                                 </div>
-                                                <div className="orderPaymentIconCard">
+                                                <div className="orderPaymentIconCard" for="c1">
                                                     <img for="c1" src="/card.png" alt="" />
                                                 </div>
                                                 <div className="orderPaymentName">
@@ -147,7 +180,7 @@ function OrderAdmin() {
                                                 <div className="oderPaymentInput">
                                                     <input type="radio" id="c2" name="cc" />
                                                 </div>
-                                                <div className="orderPaymentIconBank">
+                                                <div className="orderPaymentIconBank" for="c2">
                                                     <img for="c2" src="/bank.png" alt="" />
                                                 </div>
                                                 <div className="orderPaymentName">
@@ -158,7 +191,7 @@ function OrderAdmin() {
                                                 <div className="oderPaymentInput">
                                                     <input type="radio" id="c3" name="cc" />
                                                 </div>
-                                                <div className="orderPaymentIconDelivery">
+                                                <div className="orderPaymentIconDelivery" for="c3">
                                                     <img for="c3" src="/fast-delivery 3.png" alt="" />
                                                 </div>
                                                 <div className="orderPaymentName">
@@ -175,6 +208,9 @@ function OrderAdmin() {
                             </div>
                         </div>
                        {/* </> )})} */}
+                    </div> :
+                    <div className="orderNoOrder">
+                    <p className="orderAddressItem">Your transaction is clear</p>
                     </div>
                 }
             </div>
